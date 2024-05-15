@@ -12,12 +12,14 @@ export const createApp = ({ authModel, userModel }) => {
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-
-  app.use('/', createHomeRouter());
-  if (authModel && userModel) {
+  try {
     app.use("/auth", createAuthRouter({ authModel }));
     app.use("/user", createUserRouter({ userModel }));
+  } catch (error) {
+    console.log({ error });
   }
+
+  app.use('/', createHomeRouter());
 
   app.listen(PORT, () => {
     console.log(`Server listening on PORT http://localhost:${PORT}`);
