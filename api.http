@@ -1,0 +1,8 @@
+
+### /
+GET http://localhost:8000/
+
+
+### /contact
+
+GET http://localhost:8000/contact
