@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node server-with-mysql.js",
+    "dev": "nodemon ./src/server-with-mysql.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +20,12 @@
   },
   "homepage": "https://github.com/GabrielCerdaM/express-api-rest#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
     "express": "4.19.1",
-    "mongoose": "^8.3.4",
-    "mysql2": "^3.9.2"
+    "mysql2": "^3.9.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

@@ -6,3 +6,34 @@ GET http://localhost:8000/
 ### /contact
 
 GET http://localhost:8000/contact
+
+
+### /register
+POST http://localhost:8000/auth/register
+content-type: application/json
+
+{
+    "email": "email2@email.cl",
+    "username": "gcm3",
+    "password": "prueba"
+}
+
+### /logout
+GET http://localhost:8000/auth/logout
+
+### /auth ok
+POST http://localhost:8000/auth/login
+content-type: application/json
+
+{
+    "username": "gcm",
+    "password": "prueba"
+}
+
+### /auth no ok
+POST http://localhost:8000/auth/login
+
+{
+    "email": "email@email.com",
+    "password": "prueba"
+}
