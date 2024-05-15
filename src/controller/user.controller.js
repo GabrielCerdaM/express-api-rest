@@ -6,7 +6,7 @@ export class UserController {
   getAll = async (req, res) => {
     try {
       const user = await this.userModel.getAll();
-      res.status(200).json(user);
+      res.status(200).json(user.result);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

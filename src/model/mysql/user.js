@@ -1,7 +1,13 @@
 import db from "./db.js";
+
 export class UserModel {
   async getAll() {
-    const [result, fields] = await db.connection.query("select * from user");
-    return { result, fields };
+    try {
+      const [result, fields] = await db.connection.query("select email,username from user");
+      return { result };
+    } catch (error) {
+      console.log({ error });
+    }
+
   }
 }

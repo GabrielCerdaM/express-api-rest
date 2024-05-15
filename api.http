@@ -2,11 +2,8 @@
 ### /
 GET http://localhost:8000/
 
-
-### /contact
-
-GET http://localhost:8000/contact
-
+### /user
+GET http://localhost:8000/user
 
 ### /register
 POST http://localhost:8000/auth/register

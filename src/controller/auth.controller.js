@@ -11,9 +11,7 @@ export class AuthController {
 
         try {
             const hashedPassword = await bcrypt.hash(password, 10)
-            console.log({ password, hashedPassword });
             const resp = await this.authModel.create({ email, username, password: hashedPassword })
-            console.log({ resp });
             return res.status(200).json({ resp })
         } catch (error) {
             return res.status(500).json(error.message)
@@ -43,6 +41,6 @@ export class AuthController {
 
 
     logout = async (req, res) => {
-        return res.send(true);
+        res.send(true);
     }
 }
