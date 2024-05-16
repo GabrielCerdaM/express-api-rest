@@ -1,5 +1,16 @@
 
 ### /
+POST https://express-api-rest-jpn0.onrender.com/auth/register
+content-type: application/json
+
+{
+    "email": "email2@email.cl",
+    "username": "gcm3",
+    "password": "prueba"
+}
+
+
+### /
 GET http://localhost:8000/
 
 ### /user

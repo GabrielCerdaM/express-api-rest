@@ -4,7 +4,7 @@ import { createAuthRouter } from "./routes/auth.routes.js";
 import 'dotenv/config'
 import { createHomeRouter } from "./routes/home.routes.js";
 
-const PORT = process.env.PORT ?? 8000;
+const PORT = process.env.PORT ?? 3000;
 
 export const createApp = ({ authModel, userModel }) => {
 
