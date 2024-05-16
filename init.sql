@@ -1,14 +1,44 @@
--- init.sql
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         8.0.35 - MySQL Community Server - GPL
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             12.1.0.6537
+-- --------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS express-api-rest;
-USE express-api-rest;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE IF NOT EXISTS user (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE
-);
 
-INSERT INTO user (username, password, email) VALUES ('usuario1', '', 'usuario1@example.com');
-INSERT INTO user (username, password, email) VALUES ('usuario2', '', 'usuario2@example.com');
+-- Volcando estructura de base de datos para express-api-rest
+CREATE DATABASE IF NOT EXISTS `express-api-rest` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `express-api-rest`;
+
+-- Volcando estructura para tabla express-api-rest.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Volcando datos para la tabla express-api-rest.user: ~3 rows (aproximadamente)
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `created_at`) VALUES
+	(1, 'gcm', 'prueba', 'email.email.cl', '2024-05-15 03:46:52'),
+	(3, 'gcm2', '$2b$10$3ceoH8.0gNRja9jDeTiqV.UemW/lEm9JK7PaWoGo9mlXLXUgmqn72', 'email@email.cl', '2024-05-15 22:16:20'),
+	(8, 'gcm3', '$2b$10$V4jc5XdgfC8QL25lW85CluIt1WLAqzMRsU27bl3pdXZp7EYR4QkSC', 'email2@email.cl', '2024-05-15 22:19:15');
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

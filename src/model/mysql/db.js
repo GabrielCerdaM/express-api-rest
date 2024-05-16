@@ -8,7 +8,7 @@ const DEFAULT_CONFIG = {
   database: process.env.DB_DATABASE,
 };
 
-const connectionString = process.env.DATABASE_URL ?? DEFAULT_CONFIG;
+const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
 
 let connection;
 

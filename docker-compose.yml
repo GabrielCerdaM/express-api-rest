@@ -1,25 +1,26 @@
-version: '3.8'
-
-services:
-  app:
-    build: .
-    ports:
-      - "${PORT}:3000"
-    depends_on:
-      - db
-    environment:
-      DB_HOST: db
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_DATABASE}
-  db:
-    image: mysql:5.7
+ version: '3.8'
+ services:
+  mysqldb:
+    image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      # MYSQL_USER: ${DB_USER}
+      # MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "${DB_PORT}:3306"
+      - 3307:3306
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  app:
+    build: .
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    ports:
+      - "3000:${PORT}"
+    environment:
+      DB_HOST: mysqldb
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_DATABASE}
