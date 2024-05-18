@@ -8,23 +8,29 @@ const DEFAULT_CONFIG = {
   database: process.env.DB_DATABASE,
 };
 
-const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
+const db = async () => {
 
-let connection;
+  const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
 
-try {
-  connection = await mysql.createConnection(connectionString);
-  
-  connection.connect(function (err) {
-    if (err) {
-      console.error("error connecting: " + err.stack);
-      return;
-    }
+  let connection;
 
-    console.log("connected as id " + connection.threadId);
-  });
-} catch (error) {
-  console.log({ error });
+  try {
+    connection = await mysql.createConnection(connectionString);
+
+    await connection.connect(function (err) {
+      if (err) {
+        console.error("error connecting: " + err.stack);
+        return;
+      }
+
+      console.log("connected as id " + connection.threadId);
+    });
+
+    return connection
+  } catch (error) {
+    console.log({ error });
+  }
 }
 
-export default { connection };
+
+export default { connection: db };
