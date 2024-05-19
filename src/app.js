@@ -13,6 +13,7 @@ export const createApp = ({ authModel, userModel }) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   try {
+    app.use('/healthy', () => createHealthRouter())
     app.use("/auth", createAuthRouter({ authModel }));
     app.use("/user", createUserRouter({ userModel }));
   } catch (error) {

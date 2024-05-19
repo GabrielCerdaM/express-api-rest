@@ -1,10 +1,16 @@
 import { createApp } from "./app.js";
 import { UserModel } from "./model/mysql/user.js";
 import { AuthModel } from './model/mysql/auth.js';
+import { MySql } from "./model/mysql/db.js";
 
 try {
-    const userModel = new UserModel();
-    const authModel = new AuthModel();
+
+    const mysql = new MySql();
+    if(mysql.connect()){
+        console.log('Error al conectar base de datos');
+    }
+    const userModel = new UserModel({db: mysql});
+    const authModel = new AuthModel({db:mysql});
 
     createApp({ authModel, userModel });
 } catch (error) {
