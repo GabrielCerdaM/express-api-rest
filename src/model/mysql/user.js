@@ -7,7 +7,6 @@ export class UserModel {
       const [result, fields] = await this.db.connection.query(
         "select email,username from user"
       );
-      this.db.connection.end();
       return { result };
     } catch (error) {
       console.log({ error });

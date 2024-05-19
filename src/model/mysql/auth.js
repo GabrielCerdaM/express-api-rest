@@ -7,7 +7,6 @@ export class AuthModel {
       "select email from user where username = ? and password = ?",
       [username, password]
     );
-    this.db.connection.end();
     return { result };
   }
 
@@ -16,7 +15,6 @@ export class AuthModel {
       "INSERT INTO user (email,username,password) values (?,?,?)",
       [email, username, password]
     );
-    this.db.connection.end();
     return { result };
   }
 
