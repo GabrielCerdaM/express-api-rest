@@ -7,6 +7,7 @@ export class MySql {
 
   connect = async () => {
     const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
+    console.log({connectionString});
     this.connection = await mysql.createConnection(connectionString);
     await this.connection.connect(function (err) {
       if (err) {
