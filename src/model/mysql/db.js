@@ -19,6 +19,7 @@ export class MySql {
     });
     const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
     try {
+      console.log({ connectionString });
       this.connection = await mysql.createConnection(connectionString);
 
       const resp = await this.connection.connect();
