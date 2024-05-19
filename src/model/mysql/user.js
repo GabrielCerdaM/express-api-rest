@@ -1,4 +1,3 @@
-import db from "./db.js";
 
 export class UserModel {
   constructor({db}) {
