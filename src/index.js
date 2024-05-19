@@ -5,7 +5,7 @@ import { MySql } from "./model/mysql/db.js";
 
 try {
   const mysql = new MySql();
-  if (mysql.connect()) {
+  if (!mysql.connect()) {
     console.log("Error al conectar base de datos");
     throw new Error("Error al conectar base de datos");
   }

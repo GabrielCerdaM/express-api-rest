@@ -14,16 +14,18 @@ export class MySql {
   }
 
   connect = async () => {
-    console.log({
-      DEFAULT_CONFIG,
-    });
+    // console.log({
+    //   DEFAULT_CONFIG,
+    // });
     const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
     try {
-      console.log({ connectionString });
+      // console.log({ connectionString });
       this.connection = await mysql.createConnection(connectionString);
 
       const resp = await this.connection.connect();
+
       console.log({ resp });
+
       return true;
     } catch (error) {
       console.log({ errorMessage: error });
