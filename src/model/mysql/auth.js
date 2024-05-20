@@ -3,7 +3,8 @@ export class AuthModel {
     this.db = db;
   }
   async login({ username, password }) {
-    const [result] = await this.db.connection.query(
+    const connection = await this.db.getConnection();
+    const [result] = await connection.query(
       "select email from user where username = ? and password = ?",
       [username, password]
     );
@@ -11,7 +12,7 @@ export class AuthModel {
   }
 
   async create({ email, username, password }) {
-    const [result] = await this.db.connection.query(
+    const [result] = await this.db.query(
       "INSERT INTO user (email,username,password) values (?,?,?)",
       [email, username, password]
     );
