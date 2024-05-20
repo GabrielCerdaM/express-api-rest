@@ -4,7 +4,7 @@ export class UserModel {
   }
   async getAll() {
     try {
-      const [result] = await this.db.connection.query(
+      const [result] = await this.db.pool.query(
         "select email,username from user"
       );
       return { result };

@@ -1,12 +1,13 @@
 
 ### /
-POST https://express-api-rest-jpn0.onrender.com/auth/register
+POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "email": "email2@email.cl",
-    "username": "gcm3",
-    "password": "prueba"
+    "email": "email@email.cl",
+    "username": "gcm",
+    "password": "prueba",
+    "phone": "+569 9876 5432"
 }
 
 
@@ -21,8 +22,8 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "email": "email2@email.cl",
-    "username": "gcm3",
+    "email": "email@email.cl",
+    "username": "gcm",
     "password": "prueba"
 }
 
@@ -35,7 +36,7 @@ content-type: application/json
 
 {
     "username": "gcm",
-    "password": "prueba"
+    "password": "prueba1"
 }
 
 ### /auth no ok
