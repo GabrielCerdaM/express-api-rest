@@ -9,8 +9,9 @@ POST https://express-api-rest-jpn0.onrender.com/auth/register
 content-type: application/json
 
 {
-    "email": "email2@email.cl",
-    "username": "gcm3",
+    "email": "email@email.cl",
+    "phone": "+569 9876 5432",
+    "username": "gcm",
     "password": "prueba"
 }
 

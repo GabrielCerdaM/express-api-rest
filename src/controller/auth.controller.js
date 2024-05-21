@@ -48,7 +48,9 @@ export class AuthController {
 
       const isValid = await bcrypt.compare(password, user.password);
 
-      if (isValid) return res.status(200).json(true);
+      if (!isValid) throw new Error('Credenciales incorrectas')
+      return res.status(200).json(true);
+
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
