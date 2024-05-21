@@ -1,5 +1,10 @@
-
 ### /
+GET https://express-api-rest-jpn0.onrender.com/
+
+### /user
+GET https://express-api-rest-jpn0.onrender.com/user
+
+### /register
 POST https://express-api-rest-jpn0.onrender.com/auth/register
 content-type: application/json
 
@@ -9,28 +14,11 @@ content-type: application/json
     "password": "prueba"
 }
 
-
-### /
-GET https://gcerda-express-mysql-dev.onrender.com/
-
-### /user
-GET https://gcerda-express-mysql-dev.onrender.com/user
-
-### /register
-POST https://gcerda-express-mysql-dev.onrender.com/auth/register
-content-type: application/json
-
-{
-    "email": "email2@email.cl",
-    "username": "gcm3",
-    "password": "prueba"
-}
-
 ### /logout
-GET https://gcerda-express-mysql-dev.onrender.com/auth/logout
+GET https://express-api-rest-jpn0.onrender.com/auth/logout
 
 ### /auth ok
-POST https://gcerda-express-mysql-dev.onrender.com/auth/login
+POST https://express-api-rest-jpn0.onrender.com/auth/login
 content-type: application/json
 
 {
@@ -39,7 +27,7 @@ content-type: application/json
 }
 
 ### /auth no ok
-POST https://gcerda-express-mysql-dev.onrender.com/auth/login
+POST https://express-api-rest-jpn0.onrender.com/auth/login
 
 {
     "email": "email@email.com",

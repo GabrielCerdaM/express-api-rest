@@ -6,7 +6,7 @@ export class AuthController {
   register = async (req, res) => {
     const { email, phone, username, password } = req.body;
     if (!email || !phone || !username || !password) {
-      return res.status(400), send("Faltan datos");
+      return res.status(400).send("Faltan datos");
     }
 
     try {
