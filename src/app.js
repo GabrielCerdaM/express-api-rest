@@ -3,11 +3,12 @@ import { createUserRouter } from "./routes/user.routes.js";
 import { createAuthRouter } from "./routes/auth.routes.js";
 import "dotenv/config";
 import { createHomeRouter } from "./routes/home.routes.js";
-import { createhealthRouter } from "./routes/health.routes.js";
+import { createServiceRouter } from "./routes/service.routes.js";
+import { createCeremonyRouter } from "./routes/ceremony.routes.js";
 
 const PORT = process.env.PORT ?? 3000;
 
-export const createApp = ({ authModel, userModel }) => {
+export const createApp = ({ authModel, userModel, serviceModel, clientModel, ceremonyModel }) => {
   const app = express();
 
   app.use(express.json());
@@ -16,6 +17,9 @@ export const createApp = ({ authModel, userModel }) => {
     // app.use("/healthy", () => createhealthRouter());
     app.use("/auth", createAuthRouter({ authModel }));
     app.use("/user", createUserRouter({ userModel }));
+    app.use("/services", createServiceRouter({ serviceModel, clientModel }));
+    app.use("/ceremonies", createCeremonyRouter({ ceremonyModel }));
+
   } catch (error) {
     console.log({ error });
   }

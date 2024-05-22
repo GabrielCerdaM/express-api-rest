@@ -1,0 +1,29 @@
+[0] - auth
+[0.1] - auth register
+[0.2] - auth login
+[0.3] - auth logout
+
+X [1] - service
+X [1] - service create
+[1] - service update
+[1] - service delete
+
+X [2] - ceremony
+X [2] - ceremony create
+[2] - ceremony update
+X [2] - ceremony delete
+
+[3] - client
+[3] - client create
+[3] - client update
+[3] - client delete
+
+X [4] - user
+[4] - user create
+[4] - user update
+[4] - user delete
+
+[5] - role
+[5] - role create
+[5] - role update
+[5] - role delete

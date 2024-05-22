@@ -24,7 +24,7 @@ content-type: application/json
 
 {
     "username": "gcm",
-    "password": "prueba"
+    "password": "prueba2"
 }
 
 ### /auth no ok
