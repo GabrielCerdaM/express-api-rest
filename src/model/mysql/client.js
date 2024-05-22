@@ -5,7 +5,7 @@ export class ClientModel {
     async getAll() {
         try {
             const [result] = await this.db.pool.query(
-                "select * from client"
+                "select * from clients"
             );
             return { result };
         } catch (error) {
@@ -18,7 +18,7 @@ export class ClientModel {
         try {
             const [result] = await this.db.pool.query(
                 // "SELECT 'Something sweet'"
-                `INSERT INTO CLIENTS
+                `INSERT INTO clients
                  (name, address, phone, email, kindship)
                  VALUES
                  (?,?,?,?,?)`, [name, address, phone, email, kindship]

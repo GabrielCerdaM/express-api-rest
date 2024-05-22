@@ -1,5 +1,58 @@
 ### /
+POST https://express-api-rest-jpn0.onrender.com/auth/register
+content-type: application/json
+
+{
+    "role_id":1,
+    "name":"nombre",
+    "email": "email@email.cl",
+    "username": "gcm",
+    "password": "prueba",
+    "phone": "+569 9876 5432",
+}
+
+
+### /
 GET https://express-api-rest-jpn0.onrender.com/
+
+### /service
+GET https://express-api-rest-jpn0.onrender.com/service
+
+### /create service
+POST https://express-api-rest-jpn0.onrender.com/services
+content-type: application/json
+
+{
+    "service_type":"sepultacion",
+    "service_date":"2003/07/25",
+    "state":"NO ACTIVO",
+    "name":"Nombre cliente",
+    "address":"Direccion cliente",
+    "phone":"+569 9876 5432",
+    "email":"email@email.cl",
+    "kindship":"parentezco"
+}
+
+### / ceremony
+GET https://express-api-rest-jpn0.onrender.com/ceremonies
+
+
+### /create ceremony
+POST https://express-api-rest-jpn0.onrender.com/ceremonies
+content-type: application/json
+
+{
+ "service_id": 1,
+ "ceremony_type": "instalacion",
+ "schedule_date": "2023/01/01",
+ "schedule_time": "10:00",
+ "executed": "0"
+}
+
+### /delete ceremony
+DELETE  https://express-api-rest-jpn0.onrender.com/ceremonies/15
+content-type: application/json
+
 
 ### /user
 GET https://express-api-rest-jpn0.onrender.com/user
@@ -10,9 +63,8 @@ content-type: application/json
 
 {
     "email": "email@email.cl",
-    "phone": "+569 9876 5432",
     "username": "gcm",
-    "password": "prueba"
+    "password": "prueba",
 }
 
 ### /logout
@@ -24,7 +76,7 @@ content-type: application/json
 
 {
     "username": "gcm",
-    "password": "prueba2"
+    "password": "prueba1"
 }
 
 ### /auth no ok

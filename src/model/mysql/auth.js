@@ -4,17 +4,17 @@ export class AuthModel {
   }
   async login({ username, password }) {
     const [result] = await this.db.pool.query(
-      "select * from user where username = ?",
+      "select * from users where username = ?",
       [username]
     );
     console.log({ result });
     return { result };
   }
 
-  async create({ email, phone, username, password }) {
+  async create({ role_id, email, phone, username, password }) {
     const [result] = await this.db.pool.query(
-      "INSERT INTO user (email,phone,username,password) values (?,?,?,?)",
-      [email, phone, username, password]
+      "INSERT INTO users (role_id,email,phone,username,password) values (?,?,?,?,?)",
+      [role_id, email, phone, username, password]
     );
     return { result };
   }

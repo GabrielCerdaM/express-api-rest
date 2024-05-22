@@ -4,7 +4,7 @@ export class AuthController {
     this.authModel = authModel;
   }
   register = async (req, res) => {
-    const { email, phone, username, password } = req.body;
+    const { role_id,email, phone, username, password } = req.body;
     if (!email || !phone || !username || !password) {
       return res.status(400).send("Faltan datos");
     }
@@ -15,6 +15,7 @@ export class AuthController {
       console.log({ hashedPassword });
 
       const { result } = await this.authModel.create({
+        role_id,
         email,
         phone,
         username,
