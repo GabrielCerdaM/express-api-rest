@@ -1,25 +1,27 @@
 import bcrypt from "bcrypt";
 export class AuthController {
+
   constructor({ authModel }) {
     this.authModel = authModel;
   }
+
   register = async (req, res) => {
-    const { role_id,email, phone, username, password } = req.body;
-    if (!email || !phone || !username || !password) {
-      return res.status(400).send("Faltan datos");
+    const { role_id, name, email, phone, username, password } = req.body;
+
+    if (!role_id || !email || !name || !phone || !username || !password) {
+      return res.status(400).json(false);
     }
 
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      console.log({ hashedPassword });
-
       const { result } = await this.authModel.create({
         role_id,
+        name,
         email,
         phone,
         username,
-        password: hashedPassword,
+        password: hashedPassword
       });
       if (!result) {
         throw new Error("Error al registrar usuario");
@@ -28,7 +30,7 @@ export class AuthController {
       return res.status(200).json({ insertId });
     } catch (error) {
       console.log({ error });
-      return res.status(500).json(error.message);
+      return res.status(500).json({error});
     }
   };
 

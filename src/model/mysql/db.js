@@ -39,8 +39,6 @@ export class MySql {
       // const connection = await pool.getConnection();
       // console.log({ pool, connection });
       // this.connection = connection;
-      const [result] = await this.pool.query("select email from user ");
-      console.log({ result });
       return true;
     } catch (error) {
       console.log({ errorMessage: error });

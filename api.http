@@ -4,10 +4,42 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "email": "email@email.cl",
-    "username": "gcm",
+    "email": "email2@email.cl",
+    "username": "gcm2",
     "password": "prueba",
     "phone": "+569 9876 5432"
+}
+
+### /register
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "role_id": 1,
+    "name": "name client",
+    "email": "email2@email.cl",
+    "username": "gcm2",
+    "password": "prueba",
+    "phone":"asd"
+}
+
+### /update 2
+PATCH http://localhost:3000/user/2
+content-type: application/json
+
+{
+    "role_id": 1,
+    "name": "name client 2",
+    "password": "prueba 2 ",
+    "phone":"asdaaa 2"
+}
+
+### /update 3
+PATCH http://localhost:3000/user/3
+content-type: application/json
+
+{
+    "name": "name client 2"
 }
 
 ### /
