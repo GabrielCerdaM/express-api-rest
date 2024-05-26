@@ -1,4 +1,4 @@
-export class ClientModel {
+class ClientModel {
     constructor({ db }) {
         this.db = db;
     }
@@ -53,3 +53,5 @@ export class ClientModel {
         }
     }
 }
+
+module.exports = { ClientModel }

@@ -1,7 +1,7 @@
-import { Router } from 'express';
+const { Router } = require('express');
 
 
-export const createHomeRouter = () => {
+const createHomeRouter = () => {
     const router = new Router();
 
     router.get('/', (req, res) => {
@@ -9,4 +9,8 @@ export const createHomeRouter = () => {
     })
 
     return router
+}
+
+module.exports = {
+    createHomeRouter
 }

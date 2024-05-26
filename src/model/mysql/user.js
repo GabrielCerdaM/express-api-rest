@@ -1,4 +1,4 @@
-export class UserModel {
+class UserModel {
   constructor({ db }) {
     this.db = db;
   }
@@ -97,3 +97,6 @@ export class UserModel {
     }
   }
 }
+
+
+module.exports = { UserModel }

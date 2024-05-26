@@ -1,4 +1,4 @@
-export class AuthModel {
+class AuthModel {
   constructor({ db }) {
     this.db = db;
   }
@@ -23,3 +23,5 @@ export class AuthModel {
     return true;
   }
 }
+
+module.exports = { AuthModel }

@@ -1,10 +1,11 @@
-import { createApp } from "./app.js";
-import { UserModel } from "./model/mysql/user.js";
-import { AuthModel } from "./model/mysql/auth.js";
-import { ServiceModel } from './model/mysql/service.js';
-import { MySql } from "./model/mysql/db.js";
-import { ClientModel } from "./model/mysql/client.js";
-import { CeremonyModel } from "./model/mysql/ceremony.js";
+const { createApp } = require("./app.js");
+const { UserModel } = require("./model/mysql/user.js");
+const { AuthModel } = require("./model/mysql/auth.js");
+const { ServiceModel } = require('./model/mysql/service.js');
+const { MySql } = require("./model/mysql/db.js");
+const { ClientModel } = require("./model/mysql/client.js");
+const { CeremonyModel } = require("./model/mysql/ceremony.js");
+const PORT = process.env.PORT ?? 3000;
 
 try {
   const mysql = new MySql();
@@ -19,7 +20,12 @@ try {
   const serviceModel = new ServiceModel({ db: mysql });
   const ceremonyModel = new CeremonyModel({ db: mysql })
 
-  createApp({ authModel, userModel, serviceModel, clientModel, ceremonyModel });
+  const app = createApp({ authModel, userModel, serviceModel, clientModel, ceremonyModel });
+
+  app.listen(PORT, () => {
+    console.log(`Server listening on PORT http://localhost:${PORT}`);
+  });
+
 } catch (error) {
   console.log({ error: error.message });
 }

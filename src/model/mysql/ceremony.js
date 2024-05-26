@@ -1,4 +1,4 @@
-export class CeremonyModel {
+class CeremonyModel {
     constructor({ db }) {
         this.db = db;
     }
@@ -50,4 +50,8 @@ export class CeremonyModel {
             console.log({ error });
         }
     }
+}
+
+module.exports = {
+    CeremonyModel
 }

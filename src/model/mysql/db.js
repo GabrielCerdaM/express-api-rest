@@ -1,32 +1,19 @@
-import mysql from "mysql2/promise";
+const mysql = require("mysql2/promise");
 
-const DEFAULT_CONFIG = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  port: process.env.DB_PORT,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-};
 
-export class MySql {
+class MySql {
   constructor() {
     this.connection;
     this.pool;
   }
 
   connect = async () => {
-    // console.log({
-    //   DEFAULT_CONFIG,
-    // });
-    const connectionString = process.env.DB_URL ?? DEFAULT_CONFIG;
+    const { NODE_ENV, DB_URI, DB_URI_TEST } = process.env
+    const connectionString = NODE_ENV === 'test' ? DB_URI_TEST : DB_URI;
     try {
-      // console.log({ connectionString });
+
       this.pool = mysql.createPool({
-        host: DEFAULT_CONFIG.host,
-        user: DEFAULT_CONFIG.user,
-        database: DEFAULT_CONFIG.database,
-        port: DEFAULT_CONFIG.port,
-        password: DEFAULT_CONFIG.password,
+        uri: connectionString,
         waitForConnections: true,
         connectionLimit: 10,
         maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
@@ -35,14 +22,15 @@ export class MySql {
         enableKeepAlive: true,
         keepAliveInitialDelay: 0,
       });
-
-      // const connection = await pool.getConnection();
-      // console.log({ pool, connection });
-      // this.connection = connection;
       return true;
     } catch (error) {
       console.log({ errorMessage: error });
       return false;
     }
   };
+}
+
+
+module.exports = {
+  MySql
 }

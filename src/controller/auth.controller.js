@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-export class AuthController {
+const bcrypt = require("bcrypt");
+class AuthController {
 
   constructor({ authModel }) {
     this.authModel = authModel;
@@ -30,7 +30,7 @@ export class AuthController {
       return res.status(200).json({ insertId });
     } catch (error) {
       console.log({ error });
-      return res.status(500).json({error});
+      return res.status(500).json({ error });
     }
   };
 
@@ -62,4 +62,8 @@ export class AuthController {
   logout = async (req, res) => {
     res.send(true);
   };
+}
+
+module.exports = {
+  AuthController
 }

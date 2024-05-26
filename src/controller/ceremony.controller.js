@@ -1,4 +1,4 @@
-export class CeremonyController {
+class CeremonyController {
     constructor({ ceremonyModel }) {
         this.ceremonyModel = ceremonyModel
     }
@@ -48,12 +48,16 @@ export class CeremonyController {
     delete = async (req, res) => {
         try {
             const { ceremonyId } = req.params
-            console.log({ceremonyId});
+            console.log({ ceremonyId });
             await this.ceremonyModel.delete({ ceremonyId })
             res.status(200).json(true)
         } catch (error) {
-            console.log({error});
+            console.log({ error });
             res.status(500).json({ error })
         }
     }
+}
+
+module.exports = {
+    CeremonyController
 }

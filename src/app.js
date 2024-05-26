@@ -1,14 +1,12 @@
-import express from "express";
-import { createUserRouter } from "./routes/user.routes.js";
-import { createAuthRouter } from "./routes/auth.routes.js";
-import "dotenv/config";
-import { createHomeRouter } from "./routes/home.routes.js";
-import { createServiceRouter } from "./routes/service.routes.js";
-import { createCeremonyRouter } from "./routes/ceremony.routes.js";
+const express = require("express");
+const { createUserRouter } = require("./routes/user.routes.js");
+const { createAuthRouter } = require("./routes/auth.routes.js");
+require("dotenv/config");
+const { createHomeRouter } = require("./routes/home.routes.js");
+const { createServiceRouter } = require("./routes/service.routes.js");
+const { createCeremonyRouter } = require("./routes/ceremony.routes.js");
 
-const PORT = process.env.PORT ?? 3000;
-
-export const createApp = ({ authModel, userModel, serviceModel, clientModel, ceremonyModel }) => {
+const createApp = ({ authModel, userModel, serviceModel, clientModel, ceremonyModel }) => {
   const app = express();
 
   app.use(express.json());
@@ -26,7 +24,8 @@ export const createApp = ({ authModel, userModel, serviceModel, clientModel, cer
 
   app.use("/", createHomeRouter());
 
-  app.listen(PORT, () => {
-    console.log(`Server listening on PORT http://localhost:${PORT}`);
-  });
+  return app;
 };
+module.exports = {
+  createApp
+}

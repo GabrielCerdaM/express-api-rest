@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import { CeremonyController } from '../controller/ceremonyController.js';
+const { Router } = require('express');
+const { CeremonyController } = require('../controller/ceremony.controller.js');
 
-export const createCeremonyRouter = ({ ceremonyModel }) => {
+const createCeremonyRouter = ({ ceremonyModel }) => {
     const router = Router();
 
     const ceremonyCtrl = new CeremonyController({ ceremonyModel })
@@ -9,8 +9,12 @@ export const createCeremonyRouter = ({ ceremonyModel }) => {
     router.get('/', ceremonyCtrl.getAll)
 
     router.post('/', ceremonyCtrl.create)
-  
+
     router.delete('/:ceremonyId', ceremonyCtrl.delete)
-  
+
     return router
-} 
+}
+
+module.exports = {
+    createCeremonyRouter
+}

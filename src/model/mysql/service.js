@@ -1,4 +1,4 @@
-export class ServiceModel {
+class ServiceModel {
     constructor({ db }) {
         this.db = db;
     }
@@ -50,4 +50,9 @@ export class ServiceModel {
             console.log({ error });
         }
     }
+}
+
+
+module.exports = {
+    ServiceModel
 }

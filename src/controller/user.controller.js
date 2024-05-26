@@ -1,4 +1,4 @@
-export class UserController {
+class UserController {
   constructor({ userModel }) {
     this.userModel = userModel;
   }
@@ -76,4 +76,9 @@ export class UserController {
       res.status(500).json({ error })
     }
   }
+}
+
+
+module.exports = {
+  UserController
 }

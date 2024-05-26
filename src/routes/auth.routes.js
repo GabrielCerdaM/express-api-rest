@@ -1,7 +1,7 @@
-import { Router } from "express";
-import { AuthController } from '../controller/auth.controller.js';
+const { Router } = require("express");
+const { AuthController } = require('../controller/auth.controller.js');
 
-export const createAuthRouter = ({ authModel }) => {
+const createAuthRouter = ({ authModel }) => {
     const router = Router();
 
     const authCtrl = new AuthController({ authModel });
@@ -14,4 +14,9 @@ export const createAuthRouter = ({ authModel }) => {
 
 
     return router;
+}
+
+
+module.exports = {
+    createAuthRouter
 }

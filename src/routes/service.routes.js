@@ -1,7 +1,7 @@
-import { Router } from "express";
-import { ServiceController } from "../controller/service.controller.js";
+const { Router } = require("express");
+const { ServiceController } = require("../controller/service.controller.js");
 
-export const createServiceRouter = ({ serviceModel, clientModel }) => {
+const createServiceRouter = ({ serviceModel, clientModel }) => {
     const router = Router();
 
     const serviceCtrl = new ServiceController({ serviceModel, clientModel });
@@ -12,6 +12,9 @@ export const createServiceRouter = ({ serviceModel, clientModel }) => {
 
     // router.put('/:serviceId', serviceCtrl.edit);
 
-
     return router;
+}
+
+module.exports = {
+    createServiceRouter
 }

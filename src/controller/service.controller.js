@@ -1,4 +1,4 @@
-export class ServiceController {
+class ServiceController {
     constructor({ serviceModel, clientModel }) {
         this.serviceModel = serviceModel;
         this.clientModel = clientModel;
@@ -68,4 +68,8 @@ export class ServiceController {
         res.status(200).json(true);
     }
 
+}
+
+module.exports = {
+    ServiceController
 }
