@@ -14,14 +14,14 @@ class ClientModel {
         }
     }
 
-    async create({ name, address, phone, email, kindship }) {
+    async create({ name,rut, address, phone, email, kindship }) {
         try {
             const [result] = await this.db.pool.query(
                 // "SELECT 'Something sweet'"
                 `INSERT INTO clients
-                 (name, address, phone, email, kindship)
+                 (name, rut, address, phone, email, kindship)
                  VALUES
-                 (?,?,?,?,?)`, [name, address, phone, email, kindship]
+                 (?,?,?,?,?,?)`, [name, rut, address, phone, email, kindship]
                 // "select * from client"
             );
             return { result };

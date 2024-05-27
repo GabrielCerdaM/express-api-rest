@@ -5,7 +5,7 @@ class UserModel {
   async getAll() {
     try {
       const [result] = await this.db.pool.query(
-        "select email,username from users"
+        "select name,email,username from users"
       );
       return { result };
     } catch (error) {
@@ -16,6 +16,7 @@ class UserModel {
 
   async create({
     role_id,
+    name,
     username,
     password,
     email,
@@ -23,8 +24,8 @@ class UserModel {
   }) {
     try {
       const [result] = await this.db.pool.query(
-        `INSERT INTO users (role_id,email,username,phone,password) VALUES (?,?,?,?,?)`,
-        [role_id, email, username, phone, password]
+        `INSERT INTO users (role_id,email,name,username,phone,password) VALUES (?,?,?,?,?,?)`,
+        [role_id, name, email, username, phone, password]
       );
       return { result };
     } catch (error) {
