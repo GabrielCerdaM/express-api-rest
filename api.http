@@ -46,7 +46,7 @@ content-type: application/json
 GET http://localhost:3000/
 
 ### /service
-GET http://localhost:3000/service
+GET http://localhost:3000/services
 
 ### /create service
 POST http://localhost:3000/services
@@ -56,11 +56,15 @@ content-type: application/json
     "service_type":"sepultacion",
     "service_date":"2003/07/25",
     "state":"NO ACTIVO",
+    "rut":"11.111.111-2",
     "name":"Nombre cliente",
     "address":"Direccion cliente",
     "phone":"+569 9876 5432",
     "email":"email@email.cl",
-    "kindship":"parentezco"
+    "kindship":"parentezco",
+    "rut_deceased":"11.111.111-1",
+    "name_deceased":"nombre",
+    "date_deceased":"2020/12/13"
 }
 
 ### / ceremony

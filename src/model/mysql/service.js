@@ -13,14 +13,15 @@ class ServiceModel {
         }
     }
 
-    async create({ client_id, service_type, service_date, state }) {
+    async create({ client_id, service_type, service_date, state, rut_deceased, name_deceased, date_deceased }) {
         try {
+            console.log({ client_id, service_type, service_date, state, rut_deceased, name_deceased, date_deceased });
             const [result] = await this.db.pool.query(
                 `INSERT INTO services 
-                (client_id,service_type, service_date,state)
+                (client_id,service_type, service_date,state,rut_deceased, name_deceased, date_deceased)
                 VALUES
-                (?,?,?,?)`,
-                [client_id, service_type, service_date, state]
+                (?,?,?,?,?,?,?)`,
+                [client_id, service_type, service_date, state, rut_deceased, name_deceased, date_deceased]
             );
             return { result };
         } catch (error) {

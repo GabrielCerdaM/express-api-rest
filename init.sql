@@ -16,26 +16,163 @@
 
 
 -- Volcando estructura de base de datos para express-api-rest
+DROP DATABASE IF EXISTS `express-api-rest`;
 CREATE DATABASE IF NOT EXISTS `express-api-rest` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `express-api-rest`;
 
--- Volcando estructura para tabla express-api-rest.user
-CREATE TABLE IF NOT EXISTS `user` (
+-- Volcando estructura para tabla express-api-rest.roles
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(50) NOT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+-- Volcando estructura para tabla express-api-rest.users
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_id` int DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL UNIQUE,
+  `email` varchar(100) NOT NULL UNIQUE,
+  `password` varchar(255) NOT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `email` (`email`),
+  KEY `role_id` (`role_id`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
+);
 
--- Volcando datos para la tabla express-api-rest.user: ~3 rows (aproximadamente)
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `created_at`) VALUES
-	(1, 'gcm', 'prueba', 'email.email.cl', '2024-05-15 03:46:52'),
-	(3, 'gcm2', '$2b$10$3ceoH8.0gNRja9jDeTiqV.UemW/lEm9JK7PaWoGo9mlXLXUgmqn72', 'email@email.cl', '2024-05-15 22:16:20'),
-	(8, 'gcm3', '$2b$10$V4jc5XdgfC8QL25lW85CluIt1WLAqzMRsU27bl3pdXZp7EYR4QkSC', 'email2@email.cl', '2024-05-15 22:19:15');
+-- Volcando estructura para tabla express-api-rest.clients
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE IF NOT EXISTS `clients` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `rut` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `kindship` varchar(100) NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+-- Volcando estructura para tabla express-api-rest.services
+DROP TABLE IF EXISTS `services`;
+CREATE TABLE IF NOT EXISTS `services` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `client_id` int DEFAULT NULL,
+  `service_type` varchar(100) DEFAULT NULL,
+  `service_date` date DEFAULT NULL,
+  `state` varchar(50) DEFAULT NULL,
+
+  `rut_deceased` varchar(50) NOT NULL,
+  `name_deceased` varchar(50) NULL,
+  `date_deceased` varchar(50) NOT NULL,
+  
+
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `client_id` (`client_id`),
+  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`)
+);
+
+
+-- Volcando estructura para tabla express-api-rest.ceremonies
+DROP TABLE IF EXISTS `ceremonies`;
+CREATE TABLE IF NOT EXISTS `ceremonies` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `service_id` int DEFAULT NULL,
+  `ceremony_type` varchar(100) DEFAULT NULL,
+  `scheduled_date` date DEFAULT NULL,
+  `scheduled_time` time DEFAULT NULL,
+  `executed` boolean DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `ceremonies_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+);
+
+-- La exportación de datos fue deseleccionada.
+
+-- La exportación de datos fue deseleccionada.
+
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla express-api-rest.documents
+DROP TABLE IF EXISTS `documents`;
+CREATE TABLE IF NOT EXISTS `documents` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `service_id` int DEFAULT NULL,
+  `document_type` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `documents_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+);
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla express-api-rest.expenses
+DROP TABLE IF EXISTS `expenses`;
+CREATE TABLE IF NOT EXISTS `expenses` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `service_id` int DEFAULT NULL,
+  `expenses_type` varchar(100) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `expenses_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+);
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla express-api-rest.payments
+DROP TABLE IF EXISTS `payments`;
+CREATE TABLE IF NOT EXISTS `payments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `service_id` int DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `payment_date` date DEFAULT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deletedAt` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`)
+);
+
+-- La exportación de datos fue deseleccionada.
+
+
+-- La exportación de datos fue deseleccionada.
+
+-- La exportación de datos fue deseleccionada.
+
+-- La exportación de datos fue deseleccionada.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

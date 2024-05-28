@@ -14,7 +14,7 @@ class ClientModel {
         }
     }
 
-    async create({ name,rut, address, phone, email, kindship }) {
+    async create({ rut, name, address, phone, email, kindship }) {
         try {
             const [result] = await this.db.pool.query(
                 // "SELECT 'Something sweet'"

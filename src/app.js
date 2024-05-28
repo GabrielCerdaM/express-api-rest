@@ -12,14 +12,13 @@ const createApp = ({ authModel, userModel, serviceModel, clientModel, ceremonyMo
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   try {
-    // app.use("/healthy", () => createhealthRouter());
     app.use("/auth", createAuthRouter({ authModel }));
     app.use("/user", createUserRouter({ userModel }));
     app.use("/services", createServiceRouter({ serviceModel, clientModel }));
     app.use("/ceremonies", createCeremonyRouter({ ceremonyModel }));
 
   } catch (error) {
-    console.log({ error });
+    console.log({ error });  
   }
 
   app.use("/", createHomeRouter());

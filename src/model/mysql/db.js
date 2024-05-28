@@ -10,6 +10,7 @@ class MySql {
   connect = async () => {
     const { NODE_ENV, DB_URI, DB_URI_TEST } = process.env
     const connectionString = NODE_ENV === 'test' ? DB_URI_TEST : DB_URI;
+    console.log({connectionString});
     try {
 
       this.pool = mysql.createPool({

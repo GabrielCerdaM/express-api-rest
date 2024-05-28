@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `id` int NOT NULL AUTO_INCREMENT,
   `rut` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `address` varchar(255) DEFAULT NOT NULL,
-  `phone` varchar(20) DEFAULT NOT NULL,
-  `email` varchar(100) DEFAULT NOT NULL,
-  `kindship` varchar(100) DEFAULT NULL,
+  `address` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `kindship` varchar(100) NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deletedAt` timestamp NULL DEFAULT NULL,
@@ -76,6 +76,12 @@ CREATE TABLE IF NOT EXISTS `services` (
   `service_type` varchar(100) DEFAULT NULL,
   `service_date` date DEFAULT NULL,
   `state` varchar(50) DEFAULT NULL,
+
+  `rut_deceased` varchar(50) NOT NULL,
+  `name_deceased` varchar(50) NULL,
+  `date_deceased` varchar(50) NOT NULL,
+  
+
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deletedAt` timestamp NULL DEFAULT NULL,
