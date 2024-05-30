@@ -1,4 +1,15 @@
 
+### /token
+POST http://localhost:3000/token
+
+### /public
+get http://localhost:3000/public
+
+### /private
+get http://localhost:3000/private
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZ2FicmllbCIsImV4cCI6MTcxNzAzNzc2NzMwNCwiaWF0IjoxNzE3MDM3NzA3fQ.QVEoume3rmm1182HQuMbdnq7RqVOj4AWxl-xlFQ1pWA
+
+
 ### /
 POST http://localhost:3000/auth/register
 content-type: application/json
@@ -96,9 +107,11 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
+    "role_id":1,
+    "name":"name",
     "email": "email@email.cl",
     "username": "gcm",
-    "password": "prueba",
+    "password": "prueba"
 }
 
 ### /logout

@@ -1,4 +1,7 @@
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
+const { SECRET } = process.env
+
 class AuthController {
 
   constructor({ authModel }) {
@@ -6,9 +9,9 @@ class AuthController {
   }
 
   register = async (req, res) => {
-    const { role_id, name, email, phone, username, password } = req.body;
+    const { role_id, name, email, username, password } = req.body;
 
-    if (!role_id || !email || !name || !phone || !username || !password) {
+    if (!role_id || !email || !name || !username || !password) {
       return res.status(400).json(false);
     }
 
@@ -19,7 +22,6 @@ class AuthController {
         role_id,
         name,
         email,
-        phone,
         username,
         password: hashedPassword
       });
@@ -52,7 +54,13 @@ class AuthController {
       const isValid = await bcrypt.compare(password, user.password);
 
       if (!isValid) throw new Error('Credenciales incorrectas')
-      return res.status(200).json(true);
+
+      const token = jwt.sign({
+        user: result
+      },
+        SECRET, { expiresIn: 60 });
+
+      return res.status(200).json({ token });
 
     } catch (error) {
       res.status(500).json({ error: error.message });
