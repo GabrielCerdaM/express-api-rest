@@ -179,3 +179,7 @@ CREATE TABLE IF NOT EXISTS `payments` (
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+
+INSERT INTO `roles` (`id`,`name`, `description`) VALUES (1,'role', 'role');
+INSERT INTO `users` (`role_id`, `name`, `username`, `email`) VALUES (1, 'name', 'username', 'email');
+INSERT INTO `services` (`client_id`, `service_type`, `service_date`, `state`, `rut_deceased`, `name_deceased`, `date_deceased`) VALUES ('1', 'sepultacion', '2024-05-30', 'NO ACTIVO', '11.111.111-1', 'name', '2020/12/13');

@@ -4,7 +4,7 @@ class AuthModel {
   }
   async login({ username }) {
     const [result] = await this.db.pool.query(
-      "select id, role_id, name, username, email from users where username = ?",
+      "select role_id, name, username,password, email from users where username = ?",
       [username]
     );
     console.log({ result });

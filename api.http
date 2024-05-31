@@ -15,10 +15,11 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "email": "email2@email.cl",
-    "username": "gcm2",
-    "password": "prueba",
-    "phone": "+569 9876 5432"
+    "role_id":1,
+    "email": "email@email.cl",
+    "name":"name",
+    "username": "gcm",
+    "password": "prueba"
 }
 
 ### /register
@@ -123,7 +124,7 @@ content-type: application/json
 
 {
     "username": "gcm",
-    "password": "prueba1"
+    "password": "prueba"
 }
 
 ### /auth no ok
@@ -131,5 +132,5 @@ POST http://localhost:3000/auth/login
 
 {
     "email": "email@email.com",
-    "password": "prueba"
+    "password": "prueba1"
 }

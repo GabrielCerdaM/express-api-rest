@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken')
-const { SECRET } = process.env
 
 class AuthController {
 
@@ -12,7 +11,7 @@ class AuthController {
     const { role_id, name, email, username, password } = req.body;
 
     if (!role_id || !email || !name || !username || !password) {
-      return res.status(400).json(false);
+      return res.status(400).json({ error: 'Faltan campos' });
     }
 
     try {
@@ -39,22 +38,18 @@ class AuthController {
   login = async (req, res) => {
     try {
       const { username, password } = req.body;
-
+      const { SECRET } = process.env;
       if (!username || !password) {
         throw new Error("Credencial incorrecta");
       }
       const { result } = await this.authModel.login({ username });
-      // console.log({ result });
       // debe validar la comparacion con solo un registro
       if (result.length <= 0) {
         throw new Error("Credenciales invalidas");
       }
       const user = result[0];
-
       const isValid = await bcrypt.compare(password, user.password);
-
       if (!isValid) throw new Error('Credenciales incorrectas')
-
       const token = jwt.sign({
         user: result
       },

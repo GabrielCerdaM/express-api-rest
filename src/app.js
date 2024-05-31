@@ -40,14 +40,6 @@ const createApp = ({ authModel, userModel, serviceModel, clientModel, ceremonyMo
       try {
         // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZ2FicmllbCIsImV4cCI6MTcxNzAyMjkzMjA4NCwiaWF0IjoxNzE3MDIyODcyfQ.iSZzD5wfe1mrARxwFFCQYlAgnOca6JRZ7X2zt_FRvvE
         // const token = req.headers.authorization.split(' ')[1]
-        const token = req.token;
-
-        payload = jwt.verify(token, SECRET)
-        // res.send('im private')
-        console.log({payload, date: Date.now()});
-        if (Date.now() > payload.exp) {
-          return res.status(401).send({ error: "token expired" })
-        }
         res.send({ payload })
       } catch (error) {
         res.status(401).send({ error: error.message })
